@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AllProductsPage.aspx" />
+    <Content Include="default.aspx" />
     <Content Include="DeliveriesPage.aspx" />
     <Content Include="DonationsPage.aspx" />
     <Content Include="Global.asax" />
@@ -77,12 +77,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllProductsPage.aspx.cs">
-      <DependentUpon>AllProductsPage.aspx</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AllProductsPage.aspx.designer.cs">
-      <DependentUpon>AllProductsPage.aspx</DependentUpon>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="DeliveriesPage.aspx.cs">
       <DependentUpon>DeliveriesPage.aspx</DependentUpon>
