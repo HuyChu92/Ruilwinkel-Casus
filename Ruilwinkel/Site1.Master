@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Ruilwinkel.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="StyleSheet1.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="AllProductsPage.aspx">Alle producten</a></li>
+                    <li><a href="StockPage.aspx">Voorraad</a></li>
+                    <li><a href="LoanPage.aspx">Uitgeleend</a></li>
+                    <li><a href="DonationsPage.aspx">Donaties</a></li>
+                    <li><a href="DeliveriesPage.aspx">Leveringen</a></li>
+                 </ul>
+            </nav>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

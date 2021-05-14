@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Ruilwinkel
 {
-    public partial class TestPage : System.Web.UI.Page
+    public partial class DeliveriesPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

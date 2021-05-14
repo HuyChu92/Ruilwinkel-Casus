@@ -67,25 +67,66 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AllProductsPage.aspx" />
+    <Content Include="DeliveriesPage.aspx" />
+    <Content Include="DonationsPage.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="TestPage.aspx" />
+    <Content Include="LoanPage.aspx" />
+    <Content Include="StockPage.aspx" />
+    <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllProductsPage.aspx.cs">
+      <DependentUpon>AllProductsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllProductsPage.aspx.designer.cs">
+      <DependentUpon>AllProductsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveriesPage.aspx.cs">
+      <DependentUpon>DeliveriesPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeliveriesPage.aspx.designer.cs">
+      <DependentUpon>DeliveriesPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DonationsPage.aspx.cs">
+      <DependentUpon>DonationsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DonationsPage.aspx.designer.cs">
+      <DependentUpon>DonationsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestPage.aspx.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
+    <Compile Include="LoanPage.aspx.cs">
+      <DependentUpon>LoanPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestPage.aspx.designer.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
+    <Compile Include="LoanPage.aspx.designer.cs">
+      <DependentUpon>LoanPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="StockPage.aspx.cs">
+      <DependentUpon>StockPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockPage.aspx.designer.cs">
+      <DependentUpon>StockPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
