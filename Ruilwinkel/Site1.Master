@@ -13,8 +13,11 @@
     <form id="form1" runat="server">
         <div>
             <nav>
+                <div class="navtext">
+                    <p>Ruilwinkel</p>
+                </div>
                 <ul>
-                    <li><a href="AllProductsPage.aspx">Alle producten</a></li>
+                    <li><a href="AllProductsPage.aspx">Producten</a></li>
                     <li><a href="StockPage.aspx">Voorraad</a></li>
                     <li><a href="LoanPage.aspx">Uitgeleend</a></li>
                     <li><a href="DonationsPage.aspx">Donaties</a></li>
