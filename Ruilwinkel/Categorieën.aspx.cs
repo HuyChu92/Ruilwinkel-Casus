@@ -13,5 +13,15 @@ namespace Ruilwinkel
         {
 
         }
+
+        protected void ButtonAddCategory_Click(object sender, EventArgs e)
+        {
+            Categorie categorie = new Categorie()
+            {
+                categorienaam = TextBoxCategorieNaam.Text,
+                punten = int.Parse(TextBoxCategoriePunten.Text)
+            };
+            categorie.Toevoegen(categorie);
+        }
     }
 }
