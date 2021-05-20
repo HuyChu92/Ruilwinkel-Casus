@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ruilwinkel;
 using System;
 
 namespace UnitTestCategorie
@@ -9,6 +10,9 @@ namespace UnitTestCategorie
         [TestMethod]
         public void TestMethod1()
         {
+            Categorie categorie = new Categorie("Laptops", 15);
+            Assert.AreEqual("Laptops", categorie.categorienaam);
+            Assert.AreEqual(15, categorie.punten);
         }
     }
 }

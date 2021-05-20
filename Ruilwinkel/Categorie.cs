@@ -10,6 +10,11 @@ namespace Ruilwinkel
     {
         public string categorienaam;
         public int punten;
+        public Categorie(string categorienaam, int punten)
+        {
+            this.categorienaam = categorienaam;
+            this.punten = punten;
+        }
 
         public void Toevoegen(Categorie categorie)
         {
