@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'Ruilwinkel20210514163934'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6801e7e3945b4484b8ce1b063ef3057b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_539a223790b64dd1baa8a74a5eadf597 }}
         package: .
