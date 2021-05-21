@@ -18,6 +18,7 @@ namespace Ruilwinkel
         {
             Categorie categorie = new Categorie(TextBoxCategorieNaam.Text, int.Parse(TextBoxCategoriePunten.Text));
             categorie.Toevoegen(categorie);
+            Response.Redirect("Categorieën.aspx");
         }
     }
 }
