@@ -27,5 +27,6 @@
         <asp:TextBox ID="TextBoxCategorieNaam" runat="server" placeholder="Naam"></asp:TextBox>
         <asp:TextBox ID="TextBoxCategoriePunten" runat="server" placeholder="Punten"></asp:TextBox>
         <asp:Button ID="ButtonAddCategory" runat="server" Text="Voeg toe" OnClick="ButtonAddCategory_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Verwijder" OnClick="ButtonAddCategory_Click" />
     </div>
 </asp:Content>
