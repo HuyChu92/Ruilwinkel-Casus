@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Categorieën.aspx" />
     <Content Include="default.aspx" />
     <Content Include="DeliveriesPage.aspx" />
     <Content Include="DonationsPage.aspx" />
@@ -77,6 +78,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categorieën.aspx.cs">
+      <DependentUpon>Categorieën.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categorieën.aspx.designer.cs">
+      <DependentUpon>Categorieën.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Categorie.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
