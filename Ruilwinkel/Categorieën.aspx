@@ -2,13 +2,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT [CATEGORYNAME], [POINTS] FROM [CATEGORY]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT * FROM [CATEGORY]" UpdateCommand="UPDATE [CATEGORY] SET [CATEGORYNAME]=@CATEGORYNAME, [POINTS]=@POINTS WHERE [ID]=@ID">
+        <UpdateParameters>
+            <asp:Parameter Name="CATEGORYNAME" />
+            <asp:Parameter Name="POINTS" />
+            <asp:Parameter Name="ID" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
     <p>
     </p>
     <div style="position:absolute; top: 15%">
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" AutoGenerateEditButton="True" DataKeyNames="ID">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
+                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="CATEGORYNAME" HeaderText="CATEGORYNAME" SortExpression="CATEGORYNAME" />
                 <asp:BoundField DataField="POINTS" HeaderText="POINTS" SortExpression="POINTS" />
             </Columns>
