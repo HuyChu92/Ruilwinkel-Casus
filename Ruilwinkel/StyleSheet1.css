@@ -40,4 +40,28 @@ nav ul li a{
 a:hover{
     color: yellow;
 }
+.categoryGridview {
+    width: 500px;
+    padding: 10px;
+    margin-left: 15px;
+}
+.categoryGridviewHeader{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+.categoryGridviewRows {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    text-align: left;
+    border: none 0px transparent;
+}
+.nieuweCategorieAanmaken{
+    padding: 5px;
+    margin-left: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
 
