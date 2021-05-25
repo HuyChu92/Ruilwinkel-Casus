@@ -22,7 +22,7 @@
                     <li><a href="LoanPage.aspx">Uitgeleend</a></li>
                     <li><a href="DonationsPage.aspx">Donaties</a></li>
                     <li><a href="DeliveriesPage.aspx">Leveringen</a></li>
-                    <li><a href="Categorieën.aspx">Categorieën1</a></li>
+                    <li><a href="Categorieën.aspx">Categorieën</a></li>
                  </ul>
             </nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
