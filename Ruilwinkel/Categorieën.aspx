@@ -38,7 +38,7 @@
             <asp:Label ID="Label2" runat="server" Text="Maak een nieuwe categorie:"></asp:Label>
             <asp:TextBox ID="TextBoxCategorieNaam" runat="server" placeholder="Naam"></asp:TextBox>
             <asp:TextBox ID="TextBoxCategoriePunten" runat="server" placeholder="Punten"></asp:TextBox>
-            <asp:Button ID="ButtonAddCategory" runat="server" Text="Voeg toe" OnClick="ButtonAddCategory_Click" />
+            <asp:Button ID="ButtonAddCategory" runat="server" Text="Voeg toe1" OnClick="ButtonAddCategory_Click" />
         </div>
     </div> 
 </asp:Content>
