@@ -6,7 +6,8 @@
     <asp:GridView ID="GridView1" runat="server" style="position:absolute; top: 15%; width: 300px; left: 10px" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="Logging" HeaderText="Logging" SortExpression="Logging" />
+            <asp:BoundField DataField="LoggingVoor" HeaderText="LoggingVoor" SortExpression="LoggingVoor" />
+            <asp:BoundField DataField="LoggingNa" HeaderText="LoggingNa" SortExpression="LoggingNa" />
             <asp:BoundField DataField="Naam" HeaderText="Naam" SortExpression="Naam" />
         </Columns>
         <EditRowStyle BackColor="#2461BF" />
@@ -20,7 +21,7 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT * FROM [Logging]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT DISTINCT * FROM [Logging]"></asp:SqlDataSource>
     <p>
     </p>
     
