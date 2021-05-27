@@ -3,27 +3,28 @@ name: .NET
 on:
   push:
     branches: [ test ]
-  pull_request:
-    branches: [ test ]
 
 jobs:
   build:
-
-    runs-on: windows-latest
-
+ 
+    runs-on: ubuntu-latest
+ 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+ 
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1.7.2
       with:
         dotnet-version: 5.0.x
-    - name: Add nuget.org as nuget package source
-      run: dotnet nuget add source https://api.nuget.org/v3/index.json --name nuget.org
+        
+    - name: Restore
+      run: dotnet restore
       
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build --configuration Release --no-restore
+ 
     - name: Test
-      run: dotnet test -c Release --no-build
+      run: dotnet test --no-restore
 
       
     
