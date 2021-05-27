@@ -6,24 +6,27 @@ on:
 
 jobs:
   build:
- 
+
     runs-on: windows-latest
- 
+
     steps:
-    - uses: actions/checkout@v1
-      name: Checkout Code
-     
-    - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
-       
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
      
     - name: Restore NuGet Packages
       run: nuget restore Ruilwinkel.sln
-      
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
  
     - name: Test
       run: dotnet test --no-restore
