@@ -6,13 +6,37 @@ on:
   pull_request:
     branches: [ test ]
 
+
 jobs:
-  tests:
-    name: Unit Testing
+  build:
+
     runs-on: windows-latest
+    
     steps:
-      - uses: actions/checkout@v2.1.0
-      - run: dotnet test
+    
+    - uses: action/checkout@v2
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+      
+    - name: Setup NuGet
+      uses: NuGet/setup@v1.0.2
+      
+    - name: Restore NuGet packages
+      run: nuget restore Ruilwinkel.sln
+      
+    - name: Build the solution
+      run: msbuild Ruilwinkel.sln
+      
+    
+    
+    
+      
+      
+      
+    
+    
+
 
         
 
