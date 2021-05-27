@@ -29,6 +29,7 @@ namespace Ruilwinkel
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             con.Close();
+            Logger.WriteLog(categorie.categorienaam + " is aangemaakt.");
         }
     }
 }
