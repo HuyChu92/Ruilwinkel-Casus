@@ -18,11 +18,7 @@
                 </div>
                 <ul>
                     <li><a href="default.aspx">Producten</a></li>
-                    <li><a href="StockPage.aspx">Voorraad</a></li>
-                    <li><a href="LoanPage.aspx">Uitgeleend</a></li>
-                    <li><a href="DonationsPage.aspx">Donaties</a></li>
-                    <li><a href="DeliveriesPage.aspx">Leveringen</a></li>
-                    <li><a href="Categorieën.aspx">Categorieën</a></li>
+                    <li><a href="Categorieën.aspx">Categorieënn</a></li>
                  </ul>
             </nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
