@@ -24,6 +24,7 @@ jobs:
       run: dotnet restore
       
     - name: MSBuild
+      working-directory: src
       run: Ruilwinkel.csproj 
       
     - name: Test
