@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ test ]
+    branches:  test 
 
 jobs:
   build:
@@ -23,18 +23,14 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
       
-    - name: Publish to folder
-      run: msbuild /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
-      
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build 
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
  
-    - name: Test
-      run: dotnet test --no-restore
+
 
       
     
