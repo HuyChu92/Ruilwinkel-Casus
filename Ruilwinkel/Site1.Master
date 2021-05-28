@@ -17,7 +17,7 @@
                     <p>Ruilwinkel</p>
                 </div>
                 <ul>
-                    <li><a href="default.aspx">Productenn</a></li>
+                    <li><a href="default.aspx">Producten</a></li>
                     <li><a href="Categorieën.aspx">Categorieënn</a></li>
                  </ul>
             </nav>
