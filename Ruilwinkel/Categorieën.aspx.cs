@@ -16,7 +16,6 @@ namespace Ruilwinkel
 
         protected void ButtonAddCategory_Click(object sender, EventArgs e)
         {
-            Logger.WriteLog(TextBoxCategorieNaam.Text + " wordt aangemaakt.");
             Categorie categorie = new Categorie(TextBoxCategorieNaam.Text, int.Parse(TextBoxCategoriePunten.Text));
             categorie.Toevoegen(categorie);
             Response.Redirect("Categorieën.aspx");
