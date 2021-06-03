@@ -18,5 +18,14 @@ namespace Ruilwinkel
         {
 
         }
+
+        protected void BTNOK_Click(object sender, EventArgs e)
+        {
+            CheckBoxList checkbox = CheckBoxList2;
+            string selected = checkbox.SelectedValue;
+            BTNOK.Text = selected;
+
+
+        }
     }
 }
