@@ -2,9 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function ShowHideDiv(CheckBox2) {
+            var dvCategorie = document.getElementById("dvCategorie");
+            dvCategorie.style.display = CheckBox2.checked ? "block" : "none";
+        }
+    </script>
     <div style="position:absolute; top: 15%">
         <h1>
-        
             Producten</h1>
         <div style="padding: 10px;">
             <h2>Filter Status</h2>
@@ -16,9 +21,14 @@
             </asp:DropDownList>
         </div>
         <div style="padding: 10px";>
-            <h2>Filter categorie</h2>
-            <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME" OnSelectedIndexChanged="CheckBoxList2_SelectedIndexChanged" AutoPostBack="True">
-            </asp:CheckBoxList>
+            <label for="CheckBox2" style="font-size: large; text-decoration: solid">
+                <asp:CheckBox ID="CheckBox2" runat="server" Text="Filter Categorie" Checked="false" onclick="ShowHideDiv(this)"  />
+            </label>
+            <hr style="width: 200px;"/>
+            <div id="dvCategorie" style="display: none">
+                <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME">
+                </asp:CheckBoxList>
+            </div>  
         </div>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT [CATEGORYNAME] FROM [CATEGORY]"></asp:SqlDataSource>
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
