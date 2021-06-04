@@ -2,14 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript">
-        function ShowHideDiv(CheckBox2) {
-            var dvCategorie = document.getElementById("dvCategorie");
-            dvCategorie.style.display = CheckBox2.checked ? "block" : "none";
-        }
-    </script>
     <div style="position:absolute; top: 15%">
         <h1>
+        
             Producten</h1>
         <div style="padding: 10px;">
             <h2>Filter Status</h2>
@@ -21,23 +16,19 @@
             </asp:DropDownList>
         </div>
         <div style="padding: 10px";>
-            <label for="CheckBox2" style="font-size: large; text-decoration: solid">
-                <asp:CheckBox ID="CheckBox2" runat="server" Text="Filter Categorie" Checked="false" onclick="ShowHideDiv(this)"  />
-            </label>
-            <hr style="width: 200px;"/>
-            <div id="dvCategorie" style="display: none">
-                <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME">
-                </asp:CheckBoxList>
-            </div>  
+            <h2>Filter categorie</h2>
+            <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME" OnSelectedIndexChanged="CheckBoxList2_SelectedIndexChanged" AutoPostBack="True">
+            </asp:CheckBoxList>
         </div>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT [CATEGORYNAME] FROM [CATEGORY]"></asp:SqlDataSource>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ruilwinkelConnectionString %>" SelectCommand="SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID"
             FilterExpression="STATUS = '{0}'">
             <FilterParameters>
-                <asp:ControlParameter Name="STATUS" ControlID="DropDownListStatus" PropertyName="SelectedValue"/>
+                <asp:ControlParameter Name="STATUS" ControlID="DropDownListStatus" PropertyName="SelectedValue" />
             </FilterParameters>
         </asp:SqlDataSource>
-        <asp:Button ID="BTNOK" runat="server" OnClick="BTNOK_Click" Text="Button" />
+        
         <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -61,6 +52,9 @@
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
     </div>
+    
+    
+    
+    
+    
 </asp:Content>
-
-
