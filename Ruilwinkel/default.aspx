@@ -12,7 +12,7 @@
         <h1>
             Producten</h1>
         <div style="padding: 10px;">
-            <h2>Filter status</h2>
+            <h2>Filter Status1</h2>
             <asp:DropDownList ID="DropDownListStatus" runat="server" AutoPostBack="true" DataMember="SqlDataSource1"
                 DataTextField="Status" DataValueField="Status" AppendDataBoundItems="true">
                 <asp:ListItem Text="Alle" Value="" />
