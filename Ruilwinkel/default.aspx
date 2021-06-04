@@ -3,10 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
-        function ShowHideDiv(CheckBox2) {
-            var dvCategorie = document.getElementById("dvCategorie");
-            dvCategorie.style.display = CheckBox2.checked ? "block" : "none";
-        }
+        //function ShowHideDiv(CheckBox2) {
+        //    var dvCategorie = document.getElementById("dvCategorie");
+        //    dvCategorie.style.display = CheckBox2.checked ? "block" : "none";
+        //}
     </script>
     <div style="position:absolute; top: 15%">
         <h1>
@@ -14,19 +14,19 @@
         <div style="padding: 10px;">
             <h2>Filter Status</h2>
             <asp:DropDownList ID="DropDownListStatus" runat="server" AutoPostBack="true" DataMember="SqlDataSource1"
-                DataTextField="Status" DataValueField="Status" AppendDataBoundItems="true">
+                DataTextField="Status" DataValueField="Status" AppendDataBoundItems="true" OnSelectedIndexChanged="DropDownListStatus_SelectedIndexChanged">
                 <asp:ListItem Text="Alle" Value="" />
                 <asp:ListItem Text="Beschikbaar" Value="True" />
                 <asp:ListItem Text="Uitgeleend" Value="False"></asp:ListItem>
             </asp:DropDownList>
         </div>
         <div style="padding: 10px";>
-            <label for="CheckBox2" style="font-size: large; text-decoration: solid">
-                <asp:CheckBox ID="CheckBox2" runat="server" Text="Filter Categorie" Checked="false" onclick="ShowHideDiv(this)"  />
+            <label for="CheckBox2" style="font-size: large; text-decoration: solid" >
+                <asp:CheckBox ID="CheckBox2" runat="server" Text="Filter Categorie" OnCheckedChanged="CheckBox2_CheckedChanged" AutoPostBack="true"/>
             </label>
             <hr style="width: 200px;"/>
-            <div id="dvCategorie" style="display: none">
-                <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME">
+            <div id="dvCategorie"  runat="server" >
+                <asp:CheckBoxList ID="CheckBoxList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="CATEGORYNAME" DataValueField="CATEGORYNAME" AutoPostBack="true" OnSelectedIndexChanged="DropDownListStatus_SelectedIndexChanged">
                 </asp:CheckBoxList>
             </div>  
         </div>
@@ -39,7 +39,7 @@
             </FilterParameters>
         </asp:SqlDataSource>
         
-        <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" AllowSorting="True">
+        <asp:GridView  ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />

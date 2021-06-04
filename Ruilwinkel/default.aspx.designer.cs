@@ -33,6 +33,15 @@ namespace Ruilwinkel
         protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
 
         /// <summary>
+        /// dvCategorie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCategorie;
+
+        /// <summary>
         /// CheckBoxList2 control.
         /// </summary>
         /// <remarks>
