@@ -24,29 +24,115 @@ namespace Ruilwinkel
 
         }
 
-        protected void BTNOK_Click(object sender, EventArgs e)
+    
+
+        protected void DropDownListStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string geselecteerd = "";
+            string geselecteerddropdown = "";
+            DropDownList dropdown = DropDownListStatus;
+            foreach (ListItem item in dropdown.Items)
+            {
+                if (item.Selected)
+                {
+
+                    geselecteerddropdown += "'" + item.Value + "'";
+                }
+            }
+
+            string geselecteerdcheckbox = "";
             CheckBoxList checkbox = CheckBoxList2;
             foreach (ListItem item in checkbox.Items)
             {
                 if (item.Selected)
                 {
 
-                    geselecteerd += "'" + item.Value + "',";
+                    geselecteerdcheckbox += "'" + item.Value + "',";
                 }
             }
 
-            if (geselecteerd.Length > 0) {
-                string nieuw = geselecteerd.Remove(geselecteerd.Length - 1);
+            if ((geselecteerddropdown.Length > 0) && (geselecteerdcheckbox.Length > 0))
+            {
+                string nieuw = geselecteerdcheckbox.Remove(geselecteerdcheckbox.Length - 1);
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE CATEGORYNAME in (" + nieuw + ") AND STATUS in (" + geselecteerddropdown + ") ";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            else if ((geselecteerddropdown.Length > 0) && (geselecteerdcheckbox.Length == 0))
+            {
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE STATUS in (" + geselecteerddropdown + ")";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            else if ((geselecteerddropdown.Length == 0) && (geselecteerdcheckbox.Length > 0))
+            {
+                string nieuw = geselecteerdcheckbox.Remove(geselecteerdcheckbox.Length - 1);
                 string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE CATEGORYNAME in (" + nieuw + ")";
                 SqlDataSource1.SelectCommand = sqlquery;
             }
 
+            else
+            {
+                
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID ";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            Label1.Text = geselecteerdcheckbox;
         }
 
-        protected void DropDownListStatus_SelectedIndexChanged(object sender, EventArgs e)
+        protected void CheckBoxList2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string geselecteerddropdown = "";
+            DropDownList dropdown = DropDownListStatus;
+            foreach (ListItem item in dropdown.Items)
+            {
+                if (item.Selected)
+                {
+
+                    geselecteerddropdown += "'" + item.Value + "'";
+                }
+            }
+
+            string geselecteerdcheckbox = "";
+            CheckBoxList checkbox = CheckBoxList2;
+            foreach (ListItem item in checkbox.Items)
+            {
+                if (item.Selected)
+                {
+
+                    geselecteerdcheckbox += "'" + item.Value + "',";
+                }
+            }
+
+            if ((geselecteerddropdown.Length > 0) && (geselecteerdcheckbox.Length > 0))
+            {
+                string nieuw = geselecteerdcheckbox.Remove(geselecteerdcheckbox.Length - 1);
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE CATEGORYNAME in (" + nieuw + ") AND STATUS in (" + geselecteerddropdown + ") ";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            else if ((geselecteerddropdown.Length > 0) && (geselecteerdcheckbox.Length == 0))
+            {
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE STATUS in (" + geselecteerddropdown + ")";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            else if ((geselecteerddropdown.Length == 0) && (geselecteerdcheckbox.Length > 0))
+            {
+                string nieuw = geselecteerdcheckbox.Remove(geselecteerdcheckbox.Length - 1);
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID WHERE CATEGORYNAME in (" + nieuw + ")";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            else
+            {
+                
+                string sqlquery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID ";
+                SqlDataSource1.SelectCommand = sqlquery;
+            }
+
+            Label1.Text = geselecteerdcheckbox;
+
 
         }
     }
