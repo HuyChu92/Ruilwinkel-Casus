@@ -24,7 +24,7 @@ namespace Ruilwinkel
             string geselecteerddropdown = getSelectedDropdownValue();
             string geselecteerdcheckbox = getSelectedCheckboxlistValue();
             action1(geselecteerddropdown, geselecteerdcheckbox);
-            Label1.Text = geselecteerdcheckbox;
+            //Label1.Text = geselecteerdcheckbox;
             show_checkboxlist(CheckBox2.Checked);
         }
 
@@ -33,7 +33,7 @@ namespace Ruilwinkel
             string geselecteerddropdown = getSelectedDropdownValue();           
             string geselecteerdcheckbox = getSelectedCheckboxlistValue();
             action1(geselecteerddropdown, geselecteerdcheckbox);
-            Label1.Text = geselecteerdcheckbox;
+            //Label1.Text = geselecteerdcheckbox;
             show_checkboxlist(CheckBox2.Checked);
 
         }
@@ -49,7 +49,7 @@ namespace Ruilwinkel
 
         private void executeSqlquery( string nieuw, string geselecteerddropdown)
         {
-            string baseQuery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID ";
+            string baseQuery = "SELECT PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID ";
             string bothSelected = "WHERE CATEGORYNAME in (" + nieuw + ") AND STATUS in (" + geselecteerddropdown + ") ";
             string statusSelected = "WHERE STATUS in (" + geselecteerddropdown + ")";
             string categorySelected = "WHERE CATEGORYNAME in (" + nieuw + ")";
@@ -127,5 +127,9 @@ namespace Ruilwinkel
             return geselecteerdcheckbox;
         }
 
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            Label1.Text = TextBox1.Text;
+        }
     }
 }
