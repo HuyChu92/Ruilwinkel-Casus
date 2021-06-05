@@ -24,7 +24,7 @@ namespace Ruilwinkel
             string geselecteerddropdown = getSelectedDropdownValue();
             string geselecteerdcheckbox = getSelectedCheckboxlistValue();
             action1(geselecteerddropdown, geselecteerdcheckbox);
-            //Label1.Text = geselecteerdcheckbox;
+            //Label1.Text = geselecteerddropdown;
             show_checkboxlist(CheckBox2.Checked);
         }
 
@@ -33,7 +33,7 @@ namespace Ruilwinkel
             string geselecteerddropdown = getSelectedDropdownValue();           
             string geselecteerdcheckbox = getSelectedCheckboxlistValue();
             action1(geselecteerddropdown, geselecteerdcheckbox);
-            //Label1.Text = geselecteerdcheckbox;
+            //Label2.Text = getSelectedCheckboxlistValue();
             show_checkboxlist(CheckBox2.Checked);
 
         }
@@ -44,6 +44,11 @@ namespace Ruilwinkel
         }
 
         private void show_checkboxlist(bool value) {
+            dvCategorie.Visible = value;
+        }
+
+        private void show_point_filled(bool value)
+        {
             dvCategorie.Visible = value;
         }
 
@@ -58,7 +63,7 @@ namespace Ruilwinkel
             {
                 sqlQuery = baseQuery + categorySelected;
             }
-            else if (!String.IsNullOrEmpty(geselecteerddropdown))
+            else if (!String.IsNullOrEmpty(geselecteerddropdown) && geselecteerddropdown != "''")
             {
                 sqlQuery = baseQuery + statusSelected;
             }
@@ -68,8 +73,11 @@ namespace Ruilwinkel
             }
             else {
                 sqlQuery = baseQuery;
+
             }
+            Global.sqlQuery = sqlQuery;
             SqlDataSource1.SelectCommand = sqlQuery;
+            //Label1.Text = sqlQuery;
         }
 
         private void action1(string geselecteerddropdown, string geselecteerdcheckbox) {
@@ -104,7 +112,6 @@ namespace Ruilwinkel
             {
                 if (item.Selected)
                 {
-
                     geselecteerddropdown += "'" + item.Value + "'";
                 }
             }
@@ -119,7 +126,6 @@ namespace Ruilwinkel
             {
                 if (item.Selected)
                 {
-
                     geselecteerdcheckbox += "'" + item.Value + "',";
                 }
             }
@@ -127,9 +133,36 @@ namespace Ruilwinkel
             return geselecteerdcheckbox;
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            Label1.Text = TextBox1.Text;
+            string minValue = TextBox1.Text;
+            string maxValue = TextBox2.Text;
+            Label3.Text = minValue + maxValue;
+            string queryPunten = "";
+
+            if (String.IsNullOrEmpty(minValue) == false && String.IsNullOrEmpty(maxValue) == false)
+            {
+                queryPunten = " AND CATEGORY.POINTS BETWEEN (" + minValue + ") AND (" + maxValue + ")";
+            }
+
+            else if (String.IsNullOrEmpty(minValue) == false && String.IsNullOrEmpty(maxValue) == true)
+            {
+                queryPunten = " AND CATEGORY.POINTS >= (" + minValue + ")";
+            }
+
+            else if (String.IsNullOrEmpty(minValue) == true && String.IsNullOrEmpty(maxValue) == false)
+            {
+                queryPunten = " AND CATEGORY.POINTS <= (" + maxValue + ")";
+            }
+
+            else
+            {
+                queryPunten = Global.sqlQuery;
+            }
+
+            SqlDataSource1.SelectCommand = Global.sqlQuery + queryPunten;
+            show_point_filled(!String.IsNullOrEmpty(TextBox1.Text));
         }
+
     }
 }
