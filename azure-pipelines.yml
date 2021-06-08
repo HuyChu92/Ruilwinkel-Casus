@@ -22,9 +22,7 @@ steps:
     restoreSolution: '$(solution)'
     
 - task: WhiteSource@21
-  inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
-
+  displayName: 'WhiteSource Bolt'
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
