@@ -20,9 +20,11 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-    
+
 - task: WhiteSource@21
-  displayName: 'WhiteSource Bolt'
+  inputs:
+    cwd: '$(System.DefaultWorkingDirectory)'
+
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
