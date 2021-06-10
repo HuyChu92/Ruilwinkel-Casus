@@ -44,6 +44,8 @@
         <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+    </div>
+    <div style="position: absolute; top: 15%; left: 25%;">
         <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" DataKeyNames="ID">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
