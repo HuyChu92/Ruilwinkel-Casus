@@ -30,5 +30,20 @@ namespace Ruilwinkel
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        public void Logging(string categorie, DateTime loggingVoor, DateTime loggingNa)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=ruilwinkelserver.database.windows.net;Initial Catalog=ruilwinkel;Persist Security Info=True;User ID=devops;Password=Zuyd2021";
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "insert into [Logging] values(@LoggingVoor, @LoggingNa, @Naam)";
+            cmd.Parameters.AddWithValue("@LoggingVoor", loggingVoor);
+            cmd.Parameters.AddWithValue("@LoggingNa", loggingNa);
+            cmd.Parameters.AddWithValue("@Naam", categorie);
+            cmd.Connection = con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
     }
 }
