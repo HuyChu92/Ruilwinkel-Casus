@@ -76,7 +76,15 @@ namespace Ruilwinkel
 
             }
             Global.sqlQuery = sqlQuery;
-            SqlDataSource1.SelectCommand = sqlQuery;
+
+            if (String.IsNullOrEmpty(Global.puntenQuery)) {
+                SqlDataSource1.SelectCommand = sqlQuery;
+            }
+            else
+            {
+                SqlDataSource1.SelectCommand = sqlQuery + Global.puntenQuery;
+            }
+            
             //Label1.Text = sqlQuery;
         }
 
@@ -161,7 +169,8 @@ namespace Ruilwinkel
             }
 
             SqlDataSource1.SelectCommand = Global.sqlQuery + queryPunten;
-            show_point_filled(!String.IsNullOrEmpty(TextBox1.Text));
+            Global.puntenQuery = queryPunten;
+            dvCategorie.Visible = true;
         }
 
     }

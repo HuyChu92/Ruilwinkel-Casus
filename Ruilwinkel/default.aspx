@@ -41,7 +41,7 @@
                 <asp:ControlParameter Name="STATUS" ControlID="DropDownListStatus" PropertyName="SelectedValue" />
             </FilterParameters>
         </asp:SqlDataSource>     
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
         <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" DataKeyNames="ID">
