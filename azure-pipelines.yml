@@ -23,7 +23,7 @@ steps:
 
 - task: WhiteSource@21
   inputs:
-    cwd: '$(System.DefaultWorkingDirectory)'
+    cwd: 'Ruilwinkel'
 
 - task: VSBuild@1
   inputs:
