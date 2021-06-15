@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP app to Azure Web App - Ruilwinkel20210514162421
+name: Build and deploy ASP app to Azure Web App - ruilwinkelvaalsproductbeheer
 
 on:
   push:
@@ -51,7 +51,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'Ruilwinkel20210514162421'
+        app-name: 'ruilwinkelvaalsproductbeheer'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f36f2c4e07fe4a31ac82b7c983f0ed6b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e7432952c0c949f1b057417bdbd18229 }}
         package: .
