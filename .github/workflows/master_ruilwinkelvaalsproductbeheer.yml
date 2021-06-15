@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'ruilwinkelvaalsproductbeheer'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e7432952c0c949f1b057417bdbd18229 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3263a85beeee4d8a95d5999a6a6ea3fe }}
         package: .
