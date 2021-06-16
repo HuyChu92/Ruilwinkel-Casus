@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ruilwinkel", "Ruilwinkel\Ruilwinkel.csproj", "{2E87CDBD-90F2-4AAD-A37D-8AA25D8F776E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject5", "UnitTestProject5\UnitTestProject5.csproj", "{D3AA6DEE-EE3F-469A-9FAA-776D2F00B61E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject2", "UnitTestProject2\UnitTestProject2.csproj", "{D9DD9FCA-F534-4903-AB38-9F5085E914EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{2E87CDBD-90F2-4AAD-A37D-8AA25D8F776E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E87CDBD-90F2-4AAD-A37D-8AA25D8F776E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E87CDBD-90F2-4AAD-A37D-8AA25D8F776E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3AA6DEE-EE3F-469A-9FAA-776D2F00B61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3AA6DEE-EE3F-469A-9FAA-776D2F00B61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3AA6DEE-EE3F-469A-9FAA-776D2F00B61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3AA6DEE-EE3F-469A-9FAA-776D2F00B61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DD9FCA-F534-4903-AB38-9F5085E914EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DD9FCA-F534-4903-AB38-9F5085E914EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DD9FCA-F534-4903-AB38-9F5085E914EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DD9FCA-F534-4903-AB38-9F5085E914EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
