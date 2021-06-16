@@ -19,7 +19,7 @@ namespace Ruilwinkel
         public void Toevoegen(Categorie categorie)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"Data Source=ruilwinkelserver.database.windows.net;Initial Catalog=ruilwinkel;Persist Security Info=True;User ID=devops;Password=Zuyd2021";
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
@@ -33,7 +33,7 @@ namespace Ruilwinkel
         public void Logging(string categorie, DateTime loggingVoor, DateTime loggingNa)
         {
             SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"Data Source=ruilwinkelserver.database.windows.net;Initial Catalog=ruilwinkel;Persist Security Info=True;User ID=devops;Password=Zuyd2021";
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
