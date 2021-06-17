@@ -23,5 +23,26 @@ namespace Ruilwinkel
             categorie.Logging(TextBoxCategorieNaam.Text, loggingVoor, loggingNa);
             Response.Redirect("Categorieën.aspx");
         }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            GridViewRow gr = GridView2.SelectedRow;
+            string selected = gr.Cells[1].Text;
+            if (selected == "" || selected == null)
+            {
+                Label3.Text = "werkt niet";
+            }
+            else {
+                Label3.Text = selected;
+            }
+
+
+
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

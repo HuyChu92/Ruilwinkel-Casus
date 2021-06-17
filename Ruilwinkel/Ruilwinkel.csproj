@@ -83,6 +83,7 @@
     <Content Include="Categorieën.aspx" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\delete.png" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -15,7 +15,7 @@
     <p>
     </p>
     <div style="position:absolute; top: 15%">
-        <asp:GridView ID="GridView2" CssClass="categoryGridview" HeaderStyle-CssClass="categoryGridviewHeader" RowStyle-CssClass="categoryGridviewRows" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource3" ForeColor="#333333" GridLines="None" AutoGenerateEditButton="True" DataKeyNames="ID">
+        <asp:GridView ID="GridView2" CssClass="categoryGridview" HeaderStyle-CssClass="categoryGridviewHeader" RowStyle-CssClass="categoryGridviewRows" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource3" ForeColor="#333333" GridLines="None" AutoGenerateEditButton="True" DataKeyNames="ID" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateSelectButton="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" Visible="false" ReadOnly="True" />
@@ -46,6 +46,8 @@
             <asp:TextBox ID="TextBoxCategorieNaam" runat="server" placeholder="Naam"></asp:TextBox>
             <asp:TextBox ID="TextBoxCategoriePunten" runat="server" placeholder="Punten"></asp:TextBox>
             <asp:Button ID="ButtonAddCategory" runat="server" Text="Voeg toe" OnClick="ButtonAddCategory_Click" />
+            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" ImageUrl="~/Images/delete.png" Width="20px" Height="20px" />
+            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         </div>
     </div> 
 </asp:Content>
