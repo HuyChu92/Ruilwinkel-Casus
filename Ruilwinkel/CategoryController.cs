@@ -34,7 +34,7 @@ namespace Ruilwinkel
             return categories;
         }
 
-        /*
+        
         [HttpPost]
         public void InsertNewProduct(Product product)
         {
@@ -51,7 +51,7 @@ namespace Ruilwinkel
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        */
+        
 
         /*public void GetArticlesWithStatus()*/
     }

@@ -54,7 +54,7 @@ namespace Ruilwinkel
 
         private void executeSqlquery( string nieuw, string geselecteerddropdown)
         {
-            string baseQuery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.PROVIDERID = [USER].ID AND ARTICLE.RENTERID = [USER].ID ";
+            string baseQuery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.RENTERID = [USER].ID ";
             string bothSelected = "WHERE CATEGORYNAME in (" + nieuw + ") AND STATUS in (" + geselecteerddropdown + ") ";
             string statusSelected = "WHERE STATUS in (" + geselecteerddropdown + ")";
             string categorySelected = "WHERE CATEGORYNAME in (" + nieuw + ")";
@@ -173,5 +173,10 @@ namespace Ruilwinkel
             dvCategorie.Visible = true;
         }
 
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Label2.Text = GridView1.SelectedDataKey["FIRSTNAME"].ToString();
+            Label3.Text = GridView1.SelectedDataKey["LASTNAME"].ToString();
+        }
     }
 }
