@@ -27,36 +27,43 @@ namespace Ruilwinkel
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            string selectedCategory = GridView2.SelectedRow.Cells[1].Text;
-            string caterogyCheck = "SELECT PRODUCT.PRODUCTNAME FROM PRODUCT WHERE PRODUCT.CATEGORYID = (" + selectedCategory + ")";
-            List<string> producten = new List<string>();
-            Label3.Text = selectedCategory;
-
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = caterogyCheck;
-            cmd.Connection = con;
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            if (GridView2.SelectedRow == null)
             {
-                string productNaam = dr.GetValue(0).ToString();
-                producten.Add(productNaam);
+                Response.Write("<script>alert('Selecteer eerst een regel om te verwijderen.')</script>");
             }
-            con.Close();
-
-            if (producten.Count == 0)
+            else
             {
-                string deleteString = "DELETE FROM CATEGORY WHERE ID = (" + selectedCategory + ")";
-                deleteCategory(deleteString);
-                Response.Redirect("Categorieën.aspx");
+                string selectedCategory = GridView2.SelectedRow.Cells[1].Text;
+                string caterogyCheck = "SELECT PRODUCT.PRODUCTNAME FROM PRODUCT WHERE PRODUCT.CATEGORYID = (" + selectedCategory + ")";
+                List<string> producten = new List<string>();
+                Label3.Text = selectedCategory;
+
+                SqlConnection con = new SqlConnection();
+                con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = caterogyCheck;
+                cmd.Connection = con;
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string productNaam = dr.GetValue(0).ToString();
+                    producten.Add(productNaam);
+                }
+                con.Close();
+
+                if (producten.Count == 0)
+                {
+                    string deleteString = "DELETE FROM CATEGORY WHERE ID = (" + selectedCategory + ")";
+                    deleteCategory(deleteString);
+                    Response.Redirect("Categorieën.aspx");
+                }
+                else
+                {
+                    Messagebox(producten);
+                }
             }
-            else {
-                Messagebox(producten);
-            }
-            
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
