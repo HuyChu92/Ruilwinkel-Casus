@@ -15,10 +15,10 @@
     <p>
     </p>
     <div style="position:absolute; top: 15%">
-        <asp:GridView ID="GridView2" CssClass="categoryGridview" HeaderStyle-CssClass="categoryGridviewHeader" RowStyle-CssClass="categoryGridviewRows" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource3" ForeColor="#333333" GridLines="None" AutoGenerateEditButton="True" DataKeyNames="ID" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateSelectButton="True">
+        <asp:GridView ID="GridView2" CssClass="categoryGridview" HeaderStyle-CssClass="categoryGridviewHeader" RowStyle-CssClass="categoryGridviewRows" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource3" ForeColor="#333333" GridLines="None" AutoGenerateEditButton="True" DataKeyNames="ID" AutoGenerateSelectButton="True" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" Visible="false" ReadOnly="True" />
+                <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="CATEGORYNAME" HeaderText="CATEGORYNAME" SortExpression="CATEGORYNAME" />
                 <asp:BoundField DataField="POINTS" HeaderText="POINTS" SortExpression="POINTS" />
             </Columns>
@@ -33,7 +33,14 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT * FROM [CATEGORY]" UpdateCommand="UPDATE [CATEGORY] SET [CATEGORYNAME] = @CATEGORYNAME, [POINTS] = @POINTS WHERE [ID] = @ID">
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT [ID], [CATEGORYNAME], [POINTS] FROM [CATEGORY]" UpdateCommand="UPDATE [CATEGORY] SET [CATEGORYNAME] = @CATEGORYNAME, [POINTS] = @POINTS WHERE [ID] = @ID" DeleteCommand="DELETE FROM [CATEGORY] WHERE [ID] = @ID" InsertCommand="INSERT INTO [CATEGORY] ([CATEGORYNAME], [POINTS]) VALUES (@CATEGORYNAME, @POINTS)">
+            <DeleteParameters>
+                <asp:Parameter Name="ID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="CATEGORYNAME" Type="String" />
+                <asp:Parameter Name="POINTS" Type="Int32" />
+            </InsertParameters>
             <UpdateParameters>
             <asp:Parameter Name="CATEGORYNAME" Type="String" />
             <asp:Parameter Name="POINTS" Type="Int32" />
@@ -46,8 +53,9 @@
             <asp:TextBox ID="TextBoxCategorieNaam" runat="server" placeholder="Naam"></asp:TextBox>
             <asp:TextBox ID="TextBoxCategoriePunten" runat="server" placeholder="Punten"></asp:TextBox>
             <asp:Button ID="ButtonAddCategory" runat="server" Text="Voeg toe" OnClick="ButtonAddCategory_Click" />
-            <asp:ImageButton ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" ImageUrl="~/Images/delete.png" Width="20px" Height="20px" />
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/delete.png" Width="20px" Height="20px" OnClick="ImageButton1_Click" />
             <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
         </div>
     </div> 
 </asp:Content>
