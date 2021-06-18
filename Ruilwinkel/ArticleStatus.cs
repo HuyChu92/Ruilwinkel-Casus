@@ -5,9 +5,12 @@ using System.Web;
 
 namespace Ruilwinkel
 {
-    public class Article
+    public class ArticleStatus
     {
-    
+        public int ArticleID;
+
+        public bool status;
+
 
     }
 }
