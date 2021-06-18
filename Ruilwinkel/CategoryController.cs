@@ -51,8 +51,31 @@ namespace Ruilwinkel
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        
 
-        /*public void GetArticlesWithStatus()*/
+
+        [HttpGet]
+        public IEnumerable<ArticleStatus> GetArticleStatus()
+        {
+            List<ArticleStatus> articleStatus = new List<ArticleStatus>();
+
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT ARTICLE.ID, ARTICLE.STATUS FROM ARTICLE";
+            cmd.Connection = con;
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                int articleID = int.Parse(dr.GetValue(0).ToString());
+                bool status = (bool)dr.GetValue(1);
+                articleStatus.Add(new ArticleStatus { ArticleID = articleID, status = status });
+            }
+            con.Close();
+
+            return articleStatus;
+
+        }
     }
 }
