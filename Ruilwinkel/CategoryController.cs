@@ -39,5 +39,22 @@ namespace Ruilwinkel
 
             return categories;
         }
+
+        /*
+        [HttpGet]
+        public void GetProductsSortedByCategory()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, CATEGORY.CATEGORYNAME FROM ARTICLE INNER JOIN CATEGORY ON ARTICLE.ID = CATEGORY.ID INNER JOIN PRODUCT ON ARTICLE.PRODUCTID = PRODUCT.ID AND CATEGORY.ID = PRODUCT.CATEGORYID ORDER BY CATEGORY.CATEGORYNAME";
+            cmd.Connection = con;
+            SqlDataReader dr = cmd.ExecuteReader();
+            
+        }
+        */
+        
     }
 }

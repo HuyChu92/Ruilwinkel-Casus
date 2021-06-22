@@ -38,7 +38,7 @@ namespace Ruilwinkel
 
         }
 
-
+        /*
         [HttpPost]
         public void InsertNewProduct(Product product)
         {
@@ -55,6 +55,7 @@ namespace Ruilwinkel
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        */
 
         //[HttpPost]
         //public void InsertImage(Image Picture)
@@ -111,11 +112,24 @@ namespace Ruilwinkel
         }
         */
 
-        /*public void UpdateArticle()*/
+        /*
+        [HttpPatch]
+        public void UpdateArticleStatus(int ArticleID, bool status)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
+            con.Open();
 
-        /*public void GetProductsCategory()*/
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "UPDATE ARTICLE SET STATUS = (" + status + ") WHERE ID = (" + ArticleID + ")";
+            cmd.Connection = con;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        */
 
         /*methode dat huren meerdere id meegeeft en return of deze beschikbaar zijn als deze in winkelwagen staan*/
+
 
         /*Huren geeft userId (met naam) mee, leendatum is eigenlijk niet mee nodig*/
     }
