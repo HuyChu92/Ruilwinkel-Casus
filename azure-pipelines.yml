@@ -8,7 +8,6 @@ trigger:
 
 pool:
   vmImage: 'windows-latest'
-  name: test
 
 variables:
   solution: '**/*.sln'
