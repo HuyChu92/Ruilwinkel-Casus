@@ -112,5 +112,7 @@ namespace Ruilwinkel
         */
 
         /*public void UpdateArticle()*/
+
+        /*public void GetProductsCategory()*/
     }
 }
