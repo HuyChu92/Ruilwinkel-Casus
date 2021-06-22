@@ -7,7 +7,10 @@ namespace Ruilwinkel
 {
     public class Article
     {
-        public int categoryid;
-        public string  
+        public int productID;
+        public string commantary;
+        public byte[] image;
+
+        
     }
 }
