@@ -43,7 +43,7 @@ namespace Ruilwinkel
 
 
         [HttpGet]
-        public string GetProductsSortedByCategory(SortedArticles articles)
+        public void GetProductsSortedByCategory(SortedArticles articles)
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
@@ -58,7 +58,7 @@ namespace Ruilwinkel
             {
                 int id = articles.articles.ElementAt(0);
                 query += id.ToString();
-                return basequery + query;
+                //return basequery + query;
             }
             else
             {
@@ -67,16 +67,16 @@ namespace Ruilwinkel
                     query += id.ToString() + ",";
                 }
             }
-            query.Remove(query.Length - 1);
-            con.Close();
-            return basequery + query;
+            //query.Remove();
+            
+            //return basequery + query;
 
             /*
             cmd.CommandText = basequery + query;
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             */
-            //con.Close();
+            con.Close();
         }    
     }
 }

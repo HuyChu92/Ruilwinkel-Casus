@@ -50,23 +50,27 @@ namespace Ruilwinkel
             return "Status successfully updated";
         }
         
-        /*
+        
         [HttpPost]
-        public void InsertNewArticle(Article article)
+        public string InsertNewArticle(Article article)
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "insert into ARTICLE values(@PRODUCTID, @COMMENTARY, @IMAGE)";
+            cmd.CommandText = "insert into [ARTICLE] values(@PRODUCTID, @RENTERID, @COMMENTARY, @STATUS, @IMAGE)";
             cmd.Parameters.AddWithValue("@PRODUCTID", article.productID);
+            cmd.Parameters.AddWithValue("@RENTERID", 6);
             cmd.Parameters.AddWithValue("@COMMENTARY", article.commantary);
+            cmd.Parameters.AddWithValue("@STATUS", 1);
             cmd.Parameters.AddWithValue("@IMAGE", article.image);
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             con.Close();
+
+            return "Article successfully inserted";
         }
-        */
+        
     }
 }
