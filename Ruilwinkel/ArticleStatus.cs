@@ -9,8 +9,6 @@ namespace Ruilwinkel
     {
         public int ArticleID;
 
-        public bool status;
-
-
+        public byte status;
     }
 }

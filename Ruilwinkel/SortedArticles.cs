@@ -5,10 +5,8 @@ using System.Web;
 
 namespace Ruilwinkel
 {
-    public class Article
+    public class SortedArticles
     {
-        public int productID;
-        public string commantary;
-        public byte[] image;
+        public List<int> articles;
     }
 }

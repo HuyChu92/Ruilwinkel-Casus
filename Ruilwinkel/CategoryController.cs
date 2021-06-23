@@ -16,6 +16,7 @@ namespace Ruilwinkel
 {
     public class CategoryController : ApiController
     {
+        /*
         [HttpGet]
         public IEnumerable<Categorie> GetAllCategoriesWithPoints()
         {
@@ -38,23 +39,44 @@ namespace Ruilwinkel
             con.Close();
 
             return categories;
-        }
+        }*/
 
-        /*
+
         [HttpGet]
-        public void GetProductsSortedByCategory()
+        public string GetProductsSortedByCategory(SortedArticles articles)
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, CATEGORY.CATEGORYNAME FROM ARTICLE INNER JOIN CATEGORY ON ARTICLE.ID = CATEGORY.ID INNER JOIN PRODUCT ON ARTICLE.PRODUCTID = PRODUCT.ID AND CATEGORY.ID = PRODUCT.CATEGORYID ORDER BY CATEGORY.CATEGORYNAME";
-            cmd.Connection = con;
-            SqlDataReader dr = cmd.ExecuteReader();
+            string basequery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.RENTERID = [USER].ID ";
+            string query = "WHERE CATEGORY.ID= ";
             
-        }
-        */
-        
+            
+            if (articles.articles.Count() == 1)
+            {
+                int id = articles.articles.ElementAt(0);
+                query += id.ToString();
+                return basequery + query;
+            }
+            else
+            {
+                foreach(int id in articles.articles)
+                {
+                    query += id.ToString() + ",";
+                }
+            }
+            query.Remove(query.Length - 1);
+            con.Close();
+            return basequery + query;
+
+            /*
+            cmd.CommandText = basequery + query;
+            cmd.Connection = con;
+            cmd.ExecuteNonQuery();
+            */
+            //con.Close();
+        }    
     }
 }
