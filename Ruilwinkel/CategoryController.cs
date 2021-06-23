@@ -66,10 +66,13 @@ namespace Ruilwinkel
                 {
                     query += id.ToString() + ",";
                 }
-            }
-            query.Remove(query.Length - 1);
+
+                 string aangepast = query.Remove(query.Length - 1,1);
             con.Close();
-            return basequery + query;
+            return basequery + aangepast;
+            }
+
+           
 
             /*
             cmd.CommandText = basequery + query;

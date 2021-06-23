@@ -91,6 +91,7 @@
     <Compile Include="Article.cs" />
     <Compile Include="ArticleController.cs" />
     <Compile Include="ArticleStatus.cs" />
+    <Compile Include="AvailableArticles.cs" />
     <Compile Include="Categorieën.aspx.cs">
       <DependentUpon>Categorieën.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -9,6 +9,8 @@ namespace Ruilwinkel
     {
         public int productID;
         public string commantary;
-        public byte[] image;
+        public string image;
+
+        
     }
 }
