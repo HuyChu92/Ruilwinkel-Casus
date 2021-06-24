@@ -43,43 +43,85 @@ namespace Ruilwinkel
 
 
         [HttpGet]
-        public string GetProductsSortedByCategory(SortedArticles articles)
+        public Dictionary<string, List<AvailableArticles>> GetProductsSortedByCategory(SortedArticles articles)
         {
+            Dictionary<string, List<AvailableArticles>> sortedArticles = new Dictionary<string, List<AvailableArticles>>();
+
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
-            string basequery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.RENTERID = [USER].ID ";
-            string query = "WHERE CATEGORY.ID= ";
-            
-            
+            string basequery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID WHERE STATUS = 1 AND ";
+            string query = "CATEGORY.ID= ";
+            cmd.Connection = con;
+
             if (articles.articles.Count() == 1)
             {
                 int id = articles.articles.ElementAt(0);
                 query += id.ToString();
-                return basequery + query;
+                cmd.CommandText = basequery + query;
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr = cmd.ExecuteReader();
+                List <AvailableArticles> articles2 = new List<AvailableArticles>();
+                while (dr.Read())
+                {
+                    int articleID = int.Parse(dr.GetValue(0).ToString());
+                    string productname = dr.GetValue(1).ToString();
+                    string description = dr.GetValue(2).ToString();
+                    string categoryname = dr.GetValue(3).ToString();
+                    int points = int.Parse(dr.GetValue(4).ToString());
+                    articles2.Add(new AvailableArticles { productname = productname, points = points, description = description, 
+                        articleID = articleID, categoryname = categoryname });
+
+                    if (sortedArticles.ContainsKey(categoryname) == false)
+                    {
+                        sortedArticles.Add(categoryname, articles2);
+                    }
+                }
+
+                con.Close();
             }
+            
+            
             else
             {
                 foreach(int id in articles.articles)
                 {
                     query += id.ToString() + ",";
                 }
+                string aangepast = query.Remove(query.Length - 1, 1);
+                cmd.CommandText = basequery + aangepast;
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                while (dr.Read())
+                {
+                    int articleID = int.Parse(dr.GetValue(0).ToString());
+                    string productname = dr.GetValue(1).ToString();
+                    string description = dr.GetValue(2).ToString();
+                    string categoryname = dr.GetValue(3).ToString();
+                    int points = int.Parse(dr.GetValue(4).ToString());
+                    articles2.Add(new AvailableArticles
+                    {
+                        productname = productname,
+                        points = points,
+                        description = description,
+                        articleID = articleID,
+                        categoryname = categoryname
+                    });
 
-                 string aangepast = query.Remove(query.Length - 1,1);
-            con.Close();
-            return basequery + aangepast;
+                    if (sortedArticles.ContainsKey(categoryname) == false)
+                    {
+                        sortedArticles.Add(categoryname, articles2);
+                    }
+                }
+                con.Close();
             }
-
-           
-
-            /*
-            cmd.CommandText = basequery + query;
-            cmd.Connection = con;
-            cmd.ExecuteNonQuery();
-            */
-            //con.Close();
+            
+            return sortedArticles;
         }    
     }
 }
