@@ -80,47 +80,78 @@ namespace Ruilwinkel
                         sortedArticles.Add(categoryname, articles2);
                     }
                 }
-
-                con.Close();
+                dr.Close();
             }
-            
             
             else
             {
                 foreach(int id in articles.articles)
                 {
-                    query += id.ToString() + ",";
-                }
-                string aangepast = query.Remove(query.Length - 1, 1);
-                cmd.CommandText = basequery + aangepast;
-                cmd.Connection = con;
-                cmd.ExecuteNonQuery();
-                SqlDataReader dr = cmd.ExecuteReader();
-                List<AvailableArticles> articles2 = new List<AvailableArticles>();
-                while (dr.Read())
-                {
-                    int articleID = int.Parse(dr.GetValue(0).ToString());
-                    string productname = dr.GetValue(1).ToString();
-                    string description = dr.GetValue(2).ToString();
-                    string categoryname = dr.GetValue(3).ToString();
-                    int points = int.Parse(dr.GetValue(4).ToString());
-                    articles2.Add(new AvailableArticles
+                    //query += id.ToString() + ",";
+                    query += id.ToString();
+                    SqlCommand cmd1 = new SqlCommand();
+                    cmd1.Connection = con;
+                    cmd1.CommandText = basequery + query;
+                    cmd1.Connection = con;
+                    cmd1.ExecuteNonQuery();
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                    while (dr1.Read())
                     {
-                        productname = productname,
-                        points = points,
-                        description = description,
-                        articleID = articleID,
-                        categoryname = categoryname
-                    });
+                        int articleID = int.Parse(dr1.GetValue(0).ToString());
+                        string productname = dr1.GetValue(1).ToString();
+                        string description = dr1.GetValue(2).ToString();
+                        string categoryname = dr1.GetValue(3).ToString();
+                        int points = int.Parse(dr1.GetValue(4).ToString());
+                        articles2.Add(new AvailableArticles
+                        {
+                            productname = productname,
+                            points = points,
+                            description = description,
+                            articleID = articleID,
+                            categoryname = categoryname
+                        });
 
-                    if (sortedArticles.ContainsKey(categoryname) == false)
-                    {
-                        sortedArticles.Add(categoryname, articles2);
+                        if (sortedArticles.ContainsKey(categoryname) == false)
+                        {
+                            sortedArticles.Add(categoryname, articles2);
+                        }
                     }
+                    dr1.Close();
                 }
-                con.Close();
+
+
+
+                //string aangepast = query.Remove(query.Length - 1, 1);
+                //cmd.CommandText = basequery + aangepast;
+                //cmd.Connection = con;
+                //cmd.ExecuteNonQuery();
+                //SqlDataReader dr = cmd.ExecuteReader();
+                //List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                //while (dr.Read())
+                //{
+                //    int articleID = int.Parse(dr.GetValue(0).ToString());
+                //    string productname = dr.GetValue(1).ToString();
+                //    string description = dr.GetValue(2).ToString();
+                //    string categoryname = dr.GetValue(3).ToString();
+                //    int points = int.Parse(dr.GetValue(4).ToString());
+                //    articles2.Add(new AvailableArticles
+                //    {
+                //        productname = productname,
+                //        points = points,
+                //        description = description,
+                //        articleID = articleID,
+                //        categoryname = categoryname
+                //    });
+
+                //    if (sortedArticles.ContainsKey(categoryname) == false)
+                //    {
+                //        sortedArticles.Add(categoryname, articles2);
+                //    }
+                //}
+                //con.Close();
             }
-            
+            con.Close();
             return sortedArticles;
         }    
     }
