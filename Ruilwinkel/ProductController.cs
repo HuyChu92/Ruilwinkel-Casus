@@ -12,35 +12,9 @@ using System.Web.Http;
 namespace Ruilwinkel
 {
     public class ProductController : ApiController
-    {
-        [HttpGet]
-        public IEnumerable<ArticleStatus> GetArticleStatus()
-        {
-            List<ArticleStatus> articleStatus = new List<ArticleStatus>();
-
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ARTICLE.ID, ARTICLE.STATUS FROM ARTICLE";
-            cmd.Connection = con;
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                int articleID = int.Parse(dr.GetValue(0).ToString());
-                bool status = (bool)dr.GetValue(1);
-                articleStatus.Add(new ArticleStatus { ArticleID = articleID, status = status });
-            }
-            con.Close();
-
-            return articleStatus;
-
-        }
-
-
+    {        
         [HttpPost]
-        public void InsertNewProduct(Product product)
+        public string InsertNewProduct(Product product)
         {
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
@@ -54,7 +28,10 @@ namespace Ruilwinkel
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             con.Close();
+
+            return "Product inserted";
         }
+        
 
         //[HttpPost]
         //public void InsertImage(Image Picture)
@@ -110,13 +87,5 @@ namespace Ruilwinkel
             return "File uploaded!";
         }
         */
-
-        /*public void UpdateArticle()*/
-
-        /*public void GetProductsCategory()*/
-
-        /*methode dat huren meerdere id meegeeft en return of deze beschikbaar zijn als deze in winkelwagen staan*/
-
-        /*Huren geeft userId (met naam) mee, leendatum is eigenlijk niet mee nodig*/
     }
 }
