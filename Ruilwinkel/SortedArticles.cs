@@ -5,10 +5,8 @@ using System.Web;
 
 namespace Ruilwinkel
 {
-    public class ArticleStatus
+    public class SortedArticles
     {
-        public int ArticleID;
-
-        public byte status;
+        public List<int> articles;
     }
 }
