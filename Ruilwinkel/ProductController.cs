@@ -87,11 +87,5 @@ namespace Ruilwinkel
             return "File uploaded!";
         }
         */
-
-
-        /*methode dat huren meerdere id meegeeft en return of deze beschikbaar zijn als deze in winkelwagen staan*/
-
-
-        /*Huren geeft userId (met naam) mee, leendatum is eigenlijk niet mee nodig*/
     }
 }

@@ -16,7 +16,7 @@ namespace Ruilwinkel
 {
     public class CategoryController : ApiController
     {
-        /*
+        
         [HttpGet]
         public IEnumerable<Categorie> GetAllCategoriesWithPoints()
         {
@@ -39,7 +39,7 @@ namespace Ruilwinkel
             con.Close();
 
             return categories;
-        }*/
+        }
 
 
         [HttpGet]
