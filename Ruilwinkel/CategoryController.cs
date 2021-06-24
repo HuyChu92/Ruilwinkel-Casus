@@ -53,7 +53,7 @@ namespace Ruilwinkel
 
             SqlCommand cmd = new SqlCommand();
             string basequery = "SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID WHERE STATUS = 1 AND ";
-            string query = "CATEGORY.ID= ";
+            string query = "CATEGORY.ID in (";
             cmd.Connection = con;
 
             if (articles.articles.Count() == 1)
@@ -72,62 +72,76 @@ namespace Ruilwinkel
                     string description = dr.GetValue(2).ToString();
                     string categoryname = dr.GetValue(3).ToString();
                     int points = int.Parse(dr.GetValue(4).ToString());
-                    articles2.Add(new AvailableArticles { productname = productname, points = points, description = description, 
-                        articleID = articleID, categoryname = categoryname });
+                    AvailableArticles article = new AvailableArticles { productname = productname, points = points, description = description, 
+                        articleID = articleID, categoryname = categoryname };
 
                     if (sortedArticles.ContainsKey(categoryname) == false)
                     {
                         sortedArticles.Add(categoryname, articles2);
+                        sortedArticles[categoryname].Add(article);
+                    }
+
+                    else{
+                        sortedArticles[categoryname].Add(article);
                     }
                 }
-                dr.Close();
+
+                con.Close();
             }
+            
             
             else
             {
+                string articleid = "";
                 foreach(int id in articles.articles)
                 {
-                    //query += id.ToString() + ",";
-                    query += id.ToString();
-                    SqlCommand cmd1 = new SqlCommand();
-                    cmd1.Connection = con;
-                    cmd1.CommandText = basequery + query;
-                    cmd1.Connection = con;
-                    cmd1.ExecuteNonQuery();
-                    SqlDataReader dr1 = cmd1.ExecuteReader();
-                    List<AvailableArticles> articles2 = new List<AvailableArticles>();
-                    while (dr1.Read())
-                    {
-                        int articleID = int.Parse(dr1.GetValue(0).ToString());
-                        string productname = dr1.GetValue(1).ToString();
-                        string description = dr1.GetValue(2).ToString();
-                        string categoryname = dr1.GetValue(3).ToString();
-                        int points = int.Parse(dr1.GetValue(4).ToString());
-                        articles2.Add(new AvailableArticles
-                        {
-                            productname = productname,
-                            points = points,
-                            description = description,
-                            articleID = articleID,
-                            categoryname = categoryname
-                        });
-
-                        if (sortedArticles.ContainsKey(categoryname) == false)
-                        {
-                            sortedArticles.Add(categoryname, articles2);
-                        }
-                    }
-                    dr1.Close();
+                    articleid += id.ToString() + ",";
                 }
+                string founderMinus1 = articleid.Remove(articleid.Length - 1, 1);
+                //articleid.Remove(query.Length - 1);
+                query += founderMinus1 + ")";
+                //int id = articles.articles.ElementAt(0);
+                //query += id.ToString();
+                cmd.CommandText = basequery + query;
+                cmd.Connection = con;
+                cmd.ExecuteNonQuery();
+                SqlDataReader dr = cmd.ExecuteReader();
+                List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                while (dr.Read())
+                {
+                    int articleID = int.Parse(dr.GetValue(0).ToString());
+                    string productname = dr.GetValue(1).ToString();
+                    string description = dr.GetValue(2).ToString();
+                    string categoryname = dr.GetValue(3).ToString();
+                    int points = int.Parse(dr.GetValue(4).ToString());
+                    AvailableArticles article = new AvailableArticles
+                    {
+                        productname = productname,
+                        points = points,
+                        description = description,
+                        articleID = articleID,
+                        categoryname = categoryname
+                    };
 
+                    if (sortedArticles.ContainsKey(categoryname) == false)
+                    {
+                        sortedArticles.Add(categoryname, articles2);
+                        sortedArticles[categoryname].Add(article);
+                    }
 
+                    else
+                    {
+                        sortedArticles[categoryname].Add(article);
+                    }
+                }
 
                 //string aangepast = query.Remove(query.Length - 1, 1);
                 //cmd.CommandText = basequery + aangepast;
                 //cmd.Connection = con;
                 //cmd.ExecuteNonQuery();
                 //SqlDataReader dr = cmd.ExecuteReader();
-                //List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                ////List<AvailableArticles> articles2 = new List<AvailableArticles>();
+
                 //while (dr.Read())
                 //{
                 //    int articleID = int.Parse(dr.GetValue(0).ToString());
@@ -135,23 +149,31 @@ namespace Ruilwinkel
                 //    string description = dr.GetValue(2).ToString();
                 //    string categoryname = dr.GetValue(3).ToString();
                 //    int points = int.Parse(dr.GetValue(4).ToString());
-                //    articles2.Add(new AvailableArticles
-                //    {
-                //        productname = productname,
-                //        points = points,
-                //        description = description,
-                //        articleID = articleID,
-                //        categoryname = categoryname
-                //    });
+                //articles2.Add(new AvailableArticles
+                //{
+                //    productname = productname,
+                //    points = points,
+                //    description = description,
+                //    articleID = articleID,
+                //    categoryname = categoryname
+                //});
 
-                //    if (sortedArticles.ContainsKey(categoryname) == false)
-                //    {
-                //        sortedArticles.Add(categoryname, articles2);
-                //    }
+                //if (sortedArticles.ContainsKey(categoryname) == false)
+                //{
+
+                //    sortedArticles.Add(categoryname, articles2);
+                //    sortedArticles[categoryname].Add(articles2[0]);
+
+
+
                 //}
-                //con.Close();
+                //else { 
+
+                //}
             }
-            con.Close();
+                con.Close();
+        
+            
             return sortedArticles;
         }    
     }
