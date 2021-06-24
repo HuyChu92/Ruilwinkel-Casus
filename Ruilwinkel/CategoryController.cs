@@ -98,15 +98,11 @@ namespace Ruilwinkel
                     articleid += id.ToString() + ",";
                 }
                 string founderMinus1 = articleid.Remove(articleid.Length - 1, 1);
-                //articleid.Remove(query.Length - 1);
                 query += founderMinus1 + ")";
-                //int id = articles.articles.ElementAt(0);
-                //query += id.ToString();
                 cmd.CommandText = basequery + query;
                 cmd.Connection = con;
                 cmd.ExecuteNonQuery();
                 SqlDataReader dr = cmd.ExecuteReader();
-                List<AvailableArticles> articles2 = new List<AvailableArticles>();
                 while (dr.Read())
                 {
                     int articleID = int.Parse(dr.GetValue(0).ToString());
@@ -123,55 +119,22 @@ namespace Ruilwinkel
                         categoryname = categoryname
                     };
 
-                    if (sortedArticles.ContainsKey(categoryname) == false)
+                    bool containsKey = sortedArticles.ContainsKey(categoryname);
+
+                    if (containsKey)
                     {
-                        sortedArticles.Add(categoryname, articles2);
                         sortedArticles[categoryname].Add(article);
                     }
 
                     else
                     {
+                        List<AvailableArticles> articles2 = new List<AvailableArticles>();
+                        sortedArticles.Add(categoryname, articles2);
                         sortedArticles[categoryname].Add(article);
                     }
                 }
-
-                //string aangepast = query.Remove(query.Length - 1, 1);
-                //cmd.CommandText = basequery + aangepast;
-                //cmd.Connection = con;
-                //cmd.ExecuteNonQuery();
-                //SqlDataReader dr = cmd.ExecuteReader();
-                ////List<AvailableArticles> articles2 = new List<AvailableArticles>();
-
-                //while (dr.Read())
-                //{
-                //    int articleID = int.Parse(dr.GetValue(0).ToString());
-                //    string productname = dr.GetValue(1).ToString();
-                //    string description = dr.GetValue(2).ToString();
-                //    string categoryname = dr.GetValue(3).ToString();
-                //    int points = int.Parse(dr.GetValue(4).ToString());
-                //articles2.Add(new AvailableArticles
-                //{
-                //    productname = productname,
-                //    points = points,
-                //    description = description,
-                //    articleID = articleID,
-                //    categoryname = categoryname
-                //});
-
-                //if (sortedArticles.ContainsKey(categoryname) == false)
-                //{
-
-                //    sortedArticles.Add(categoryname, articles2);
-                //    sortedArticles[categoryname].Add(articles2[0]);
-
-
-
-                //}
-                //else { 
-
-                //}
             }
-                con.Close();
+            con.Close();
         
             
             return sortedArticles;
