@@ -18,23 +18,24 @@ namespace Ruilwinkel
     {
         
         [HttpGet]
-        public IEnumerable<Categorie> GetAllCategoriesWithPoints()
+        public IEnumerable<CategoryInfo> GetAllCategoriesWithPoints()
         {
-            List<Categorie> categories = new List<Categorie>();
+            List<CategoryInfo> categories = new List<CategoryInfo>();
 
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT CATEGORY.CATEGORYNAME, CATEGORY.POINTS FROM CATEGORY";
+            cmd.CommandText = "SELECT CATEGORY.ID, CATEGORY.CATEGORYNAME, CATEGORY.POINTS FROM CATEGORY";
             cmd.Connection = con;
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                string categorieNaam = dr.GetValue(0).ToString();
-                int points = int.Parse(dr.GetValue(1).ToString());
-                categories.Add(new Categorie { categorienaam = categorieNaam, punten = points});
+                int categoryID = int.Parse(dr.GetValue(0).ToString());
+                string categorieNaam = dr.GetValue(1).ToString();
+                int points = int.Parse(dr.GetValue(2).ToString());
+                categories.Add(new CategoryInfo { categoryID = categoryID, categorienaam = categorieNaam, punten = points});
             }
             con.Close();
 

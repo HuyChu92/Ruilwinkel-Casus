@@ -13,6 +13,36 @@ namespace Ruilwinkel
 {
     public class ProductController : ApiController
     {        
+        [HttpGet]
+        public IEnumerable<ProductInfo> GetAllProducts()
+        {
+            List<ProductInfo> products = new List<ProductInfo>();
+
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM PRODUCT";
+            cmd.Connection = con;
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                int ID = int.Parse(dr.GetValue(0).ToString());
+                int categoryID = int.Parse(dr.GetValue(1).ToString());
+                string ProductName = dr.GetValue(2).ToString();
+                string productDescription = dr.GetValue(3).ToString();
+                products.Add(new ProductInfo { ID = ID, CategorieID = categoryID, ProductName = ProductName, Description = productDescription });
+            }
+            con.Close();
+
+            return products;
+        }
+
+
+
+
+
         [HttpPost]
         public string InsertNewProduct(Product product)
         {
@@ -32,6 +62,7 @@ namespace Ruilwinkel
             return "Product inserted";
         }
         
+        //GetProducts
 
         //[HttpPost]
         //public void InsertImage(Image Picture)
