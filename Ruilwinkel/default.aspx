@@ -8,16 +8,16 @@
         //    dvCategorie.style.display = CheckBox2.checked ? "block" : "none";
         //}
     </script>
-    <div style="position:absolute; top: 15%">
+    <div style="position:absolute; top: 15%; left: 10px">
         <h1>
             Producten</h1>
         <div style="padding: 10px;">
             <h2>Filter Status</h2>
             <asp:DropDownList ID="DropDownListStatus" runat="server" AutoPostBack="true" DataMember="SqlDataSource1"
                 DataTextField="Status" DataValueField="Status" AppendDataBoundItems="true" OnSelectedIndexChanged="DropDownListStatus_SelectedIndexChanged">
-                <asp:ListItem Text="Alle" Value="" />
-                <asp:ListItem Text="Beschikbaar" Value="True" />
-                <asp:ListItem Text="Uitgeleend" Value="False"></asp:ListItem>
+                <asp:ListItem class="dropdown-item" Text="Alle" Value="" />
+                <asp:ListItem class="dropdown-item" Text="Beschikbaar" Value="True" />
+                <asp:ListItem class="dropdown-item" Text="Uitgeleend" Value="False"></asp:ListItem>
             </asp:DropDownList>
         </div>
         <div style="padding: 10px";>
@@ -41,11 +41,11 @@
                 <asp:ControlParameter Name="STATUS" ControlID="DropDownListStatus" PropertyName="SelectedValue" />
             </FilterParameters>
         </asp:SqlDataSource>     
-        <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" class="buttons" runat="server" Text="OK" OnClick="Button1_Click" />
     </div>
     <div style="position: absolute; top: 15%; left: 25%;">
-        <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" DataKeyNames="ID" NullDisplayText="-NA-">
-            <AlternatingRowStyle BackColor="White" />
+        <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="3" GridLines="Horizontal" DataKeyNames="ID" NullDisplayText="-NA-" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px">
+            <AlternatingRowStyle BackColor="#F7F7F7" />
 
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" InsertVisible="False" ReadOnly="True" />
@@ -56,16 +56,15 @@
                 <asp:BoundField DataField="POINTS" HeaderText="POINTS" SortExpression="POINTS" />
                 <asp:BoundField DataField="NAAM" HeaderText="NAAM" SortExpression="NAAM"/>          
             </Columns>           
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+            <SortedAscendingCellStyle BackColor="#F4F4FD" />
+            <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+            <SortedDescendingCellStyle BackColor="#D8D8F0" />
+            <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
     </div>
     
