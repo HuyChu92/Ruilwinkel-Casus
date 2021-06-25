@@ -36,7 +36,7 @@ namespace Ruilwinkel
                 string selectedCategory = GridView2.SelectedRow.Cells[1].Text;
                 string caterogyCheck = "SELECT PRODUCT.PRODUCTNAME FROM PRODUCT WHERE PRODUCT.CATEGORYID = (" + selectedCategory + ")";
                 List<string> producten = new List<string>();
-                Label3.Text = selectedCategory;
+                //Label3.Text = selectedCategory;
 
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = @"Data Source=productbeheerserver.database.windows.net;Initial Catalog=RuilwinkelDB;Persist Security Info=True;User ID=DevOps;Password=Zuyd2021";
