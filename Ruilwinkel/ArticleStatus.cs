@@ -11,6 +11,8 @@ namespace Ruilwinkel
 
         public byte status;
 
+        public string naam = "Ruilwinkel";
+
         public ArticleStatus() { }
 
         public ArticleStatus(int ArticleID, byte status)

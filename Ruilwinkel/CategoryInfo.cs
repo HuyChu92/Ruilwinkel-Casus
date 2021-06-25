@@ -10,5 +10,14 @@ namespace Ruilwinkel
         public int categoryID;
         public string categorienaam;
         public int punten;
+
+        public CategoryInfo() { }
+
+        public CategoryInfo(int categoryID, string categorienaam, int punten)
+        {
+            this.categoryID = categoryID;
+            this.categorienaam = categorienaam;
+            this.punten = punten;
+        }
     }
 }
