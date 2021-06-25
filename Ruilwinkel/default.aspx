@@ -35,18 +35,16 @@
             <asp:TextBox ID="TextBox1" runat="server" ></asp:TextBox> <p> tot </p> <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         </div>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT [CATEGORYNAME] FROM [CATEGORY]"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, [USER].FIRSTNAME, [USER].LASTNAME, CATEGORY.POINTS FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID INNER JOIN [USER] ON ARTICLE.RENTERID = [USER].ID"
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RuilwinkelDBConnectionString %>" SelectCommand="SELECT ARTICLE.ID, PRODUCT.PRODUCTNAME, PRODUCT.DESCRIPTION, CATEGORY.CATEGORYNAME, ARTICLE.STATUS, CATEGORY.POINTS, ARTICLE.NAAM FROM PRODUCT INNER JOIN ARTICLE ON PRODUCT.ID = ARTICLE.PRODUCTID INNER JOIN CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID"
             FilterExpression="STATUS = '{0}'">
             <FilterParameters>
                 <asp:ControlParameter Name="STATUS" ControlID="DropDownListStatus" PropertyName="SelectedValue" />
             </FilterParameters>
         </asp:SqlDataSource>     
         <asp:Button ID="Button1" runat="server" Text="OK" OnClick="Button1_Click" />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
     </div>
     <div style="position: absolute; top: 15%; left: 25%;">
-        <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" DataKeyNames="ID,FIRSTNAME,LASTNAME" NullDisplayText="-NA-" AutoGenerateSelectButton="True" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" CssClass="productGridview" HeaderStyle-CssClass="categoryGridviewHeader" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" DataKeyNames="ID" NullDisplayText="-NA-">
             <AlternatingRowStyle BackColor="White" />
 
             <Columns>
@@ -56,8 +54,7 @@
                 <asp:BoundField DataField="CATEGORYNAME" HeaderText="CATEGORYNAME" SortExpression="CATEGORYNAME" />
                 <asp:CheckBoxField DataField="STATUS" HeaderText="STATUS" SortExpression="STATUS" />
                 <asp:BoundField DataField="POINTS" HeaderText="POINTS" SortExpression="POINTS" />
-                <asp:BoundField DataField="FIRSTNAME" HeaderText="FIRSTNAME" Visible="False"/>
-                <asp:BoundField DataField="LASTNAME" HeaderText="LASTNAME" Visible="False"/>                
+                <asp:BoundField DataField="NAAM" HeaderText="NAAM" SortExpression="NAAM"/>          
             </Columns>           
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

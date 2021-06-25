@@ -11,6 +11,8 @@ namespace Ruilwinkel
 
         public byte status;
 
-        public int renterID=6;
+        public string naam="Ruilwinkel";
+
+        
     }
 }
