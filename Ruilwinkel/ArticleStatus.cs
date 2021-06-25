@@ -10,5 +10,13 @@ namespace Ruilwinkel
         public int ArticleID;
 
         public byte status;
+
+        public ArticleStatus() { }
+
+        public ArticleStatus(int ArticleID, byte status)
+        {
+            this.ArticleID = ArticleID;
+            this.status = status;
+        }
     }
 }
