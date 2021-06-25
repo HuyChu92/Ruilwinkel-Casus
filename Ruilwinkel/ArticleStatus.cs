@@ -10,5 +10,7 @@ namespace Ruilwinkel
         public int ArticleID;
 
         public byte status;
+
+        public int renterID=6;
     }
 }

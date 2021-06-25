@@ -46,7 +46,7 @@ namespace Ruilwinkel
             con.Open();
 
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "UPDATE ARTICLE SET STATUS = (" + article.status + ") WHERE ID = (" + article.ArticleID + ")";
+            cmd.CommandText = "UPDATE ARTICLE SET STATUS = (" + article.status + "), RENTERID = (" + article.renterID + ") WHERE ID = (" + article.ArticleID + ")";
             cmd.Connection = con;
             cmd.ExecuteNonQuery();
             con.Close();
