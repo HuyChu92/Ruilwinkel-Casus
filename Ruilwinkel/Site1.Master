@@ -19,7 +19,7 @@
                 </div>
                 <ul>
                     <li><a href="default.aspx">Producten</a></li>
-                    <li><a href="Categorieën.aspx">Categorieën</a></li>
+                    <li><a href="Categorieën.aspx">Categorieënn</a></li>
                  </ul>
             </nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
